@@ -35,47 +35,58 @@ export const printUrlCard = (card: number) => {
     }
   };
 
-export const restartGame = (): void =>{
-    if (cardElement && textOverElement !== null && textScoreElement !== null
-      ) {
-        cardElement.src = "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/back.jpg";
-        textOverElement.textContent = "";
-        textScoreElement.textContent = numberOfGame.score.toString();
-      }
-}
+export const restartGame = (): void => {
+  if (cardElement instanceof HTMLImageElement && textOverElement instanceof HTMLSpanElement && textScoreElement instanceof HTMLSpanElement) {
+    cardElement.src =
+      "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/back.jpg";
+    textOverElement.textContent = "";
+    textScoreElement.textContent = numberOfGame.score.toString();
+  }
+};
 
-export const restartButton = (): void =>{
-    if (buttonCardElement && buttonStopElement && buttonGameOverElement && buttonClueElement) {
-        buttonCardElement.disabled = false;
-        buttonStopElement.disabled = true;
-        buttonGameOverElement.disabled = true;
-        buttonClueElement.classList.add("hide");
-      }
+export const restartButton = (): void => {
+  if (
+    buttonCardElement instanceof HTMLButtonElement &&
+    buttonStopElement instanceof HTMLButtonElement &&
+    buttonGameOverElement instanceof HTMLButtonElement &&
+    buttonClueElement instanceof HTMLButtonElement
+  ) {
+    buttonCardElement.disabled = false;
+    buttonStopElement.disabled = true;
+    buttonGameOverElement.disabled = true;
+    buttonClueElement.classList.add("hide");
+  }
+};
+
+const printTextStopGame = ():string =>{
+  if (numberOfGame.score < 4 && textOverElement) {
+    return "Has sido muy conservador";
+  } else if (numberOfGame.score <= 5 && textOverElement != null) {
+    return "Te ha entrado el canguelo eh?";
+  } else if (numberOfGame.score <= 7 && textOverElement != null) {
+    return "Casi casi...";
+  } else if (numberOfGame.score === 7.5 && textOverElement != null) {
+    return "¡ Lo has clavado! ¡Enhorabuena!";
+  }
+  return "";
 }
 
 
 export const stopGameFuntion = (): void => {
-    if (buttonCardElement && buttonStopElement && buttonGameOverElement) {
-      buttonCardElement.disabled = true;
-      buttonStopElement.disabled = true;
-      buttonGameOverElement.disabled = false;
-    }
-    if (numberOfGame.score < 4 && textOverElement != null) {
-      textOverElement.textContent = "Has sido muy conservador";
-    } else if (numberOfGame.score <= 5 && textOverElement != null) {
-      textOverElement.textContent = "Te ha entrado el canguelo eh?";
-    } else if (numberOfGame.score <= 7 && textOverElement != null) {
-      textOverElement.textContent = "Casi casi...";
-    } else if (numberOfGame.score === 7.5 && textOverElement != null) {
-      textOverElement.textContent = "¡ Lo has clavado! ¡Enhorabuena!";
-    }
-  
-    if (buttonClueElement) {
-      buttonClueElement.classList.remove("hide");
-    }
-  
-    checkButton();
-  };
+  if (buttonCardElement instanceof HTMLButtonElement && buttonStopElement instanceof HTMLButtonElement && buttonGameOverElement instanceof HTMLButtonElement) {
+    buttonCardElement.disabled = true;
+    buttonStopElement.disabled = true;
+    buttonGameOverElement.disabled = false;
+  }
+  if (buttonClueElement) {
+    buttonClueElement.classList.remove("hide");
+  }
+  const message = printTextStopGame()
+  if (textOverElement) {
+    textOverElement.textContent = message; 
+  }
+  checkButton();
+};
 
 export const clueFuntion = (): void => {
     let nextRandomNumber = 0;
