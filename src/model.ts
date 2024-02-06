@@ -1,10 +1,10 @@
 export const textScoreElement = document.getElementById("text-score");
 export const textOverElement = document.getElementById("text-over");
-export const buttonCardElement: HTMLButtonElement | null = document.getElementById("button-card") as HTMLButtonElement | null;
-export const buttonStopElement: HTMLButtonElement | null = document.getElementById("button-stop") as HTMLButtonElement | null;
-export const buttonGameOverElement: HTMLButtonElement | null = document.getElementById("button-game-over") as HTMLButtonElement | null;
-export const buttonClueElement: HTMLButtonElement | null = document.getElementById("button-clue") as HTMLButtonElement | null;
-export const cardElement: HTMLImageElement | null = document.getElementById('card') as HTMLImageElement | null;
+export const buttonCardElement = document.getElementById("button-card");
+export const buttonStopElement = document.getElementById("button-stop");
+export const buttonGameOverElement = document.getElementById("button-game-over");
+export const buttonClueElement = document.getElementById("button-clue");
+export const cardElement = document.getElementById('card');
 
 
 export const numberOfGame = {
