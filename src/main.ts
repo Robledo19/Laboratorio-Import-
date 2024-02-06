@@ -17,8 +17,8 @@ import{
 } from './ui'
 
 
-window.addEventListener("DOMContentLoaded", checkScore);
 
+window.addEventListener("DOMContentLoaded", checkScore);
 if (
   buttonCardElement !== null &&
   buttonCardElement !== undefined &&
@@ -26,6 +26,24 @@ if (
 ) {
   buttonCardElement.addEventListener("click", newCard);
 }
-buttonStopElement?.addEventListener("click", stopGameFuntion);
-buttonGameOverElement?.addEventListener("click", playAgain);
-buttonClueElement?.addEventListener("click", clueFuntion);
+if (
+  buttonStopElement !== null &&
+  buttonStopElement !== undefined &&
+  buttonStopElement instanceof HTMLButtonElement
+) {
+  buttonStopElement.addEventListener("click", stopGameFuntion);
+}
+if (
+  buttonGameOverElement !== null &&
+  buttonGameOverElement !== undefined &&
+  buttonGameOverElement instanceof HTMLButtonElement
+) {
+  buttonGameOverElement.addEventListener("click", playAgain);
+}
+if (
+  buttonClueElement !== null &&
+  buttonClueElement !== undefined &&
+  buttonClueElement instanceof HTMLButtonElement
+) {
+  buttonClueElement.addEventListener("click", clueFuntion);
+}
