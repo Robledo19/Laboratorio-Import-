@@ -9,23 +9,36 @@ import {
  } from './model';
 
 export const checkButton = () => {
-    const buttons = [buttonCardElement, buttonStopElement, buttonClueElement, buttonGameOverElement];
+  if (buttonCardElement instanceof HTMLButtonElement && buttonCardElement.disabled) {
+    buttonCardElement.classList.add("button-disabled");
+  } else {
+    buttonCardElement?.classList.remove("button-disabled");
+  }
 
-    buttons.forEach(button => {
-        if (button?.disabled) {
-            button.classList.add('button-disabled');
-        } else {
-            button?.classList.remove('button-disabled');
-        }
-    });
+  if (buttonStopElement instanceof HTMLButtonElement && buttonStopElement.disabled) {
+    buttonStopElement.classList.add("button-disabled");
+  } else {
+    buttonStopElement?.classList.remove("button-disabled");
+  }
+
+  if (buttonClueElement instanceof HTMLButtonElement && buttonClueElement.disabled) {
+    buttonClueElement.classList.add("button-disabled");
+  } else {
+    buttonClueElement?.classList.remove("button-disabled");
+  }
+
+  if (buttonGameOverElement instanceof HTMLButtonElement && buttonGameOverElement.disabled) {
+    buttonGameOverElement.classList.add("button-disabled");
+  } else {
+    buttonGameOverElement?.classList.remove("button-disabled");
+  }
 };
 
-
-export const activeButtonStop = () =>{
-    if (buttonStopElement) {
-        buttonStopElement.disabled = false;
-      }
-}
+export const activeButtonStop = () => {
+  if (buttonStopElement instanceof HTMLButtonElement) {
+    buttonStopElement.disabled = false;
+  }
+};
 
 export const getCardPoints = (card: number) => {
     return card > 7 ? 0.5 : card;
@@ -40,22 +53,32 @@ export const setScore = (newScore: number) => {
   };
   
 export const winGame = () => {
-      if(textOverElement != null && buttonCardElement && buttonStopElement && buttonGameOverElement){
-          textOverElement.textContent = "¡ Lo has clavado! ¡Enhorabuena!";
-          buttonCardElement.disabled = true;
-          buttonStopElement.disabled = true;
-          buttonGameOverElement.disabled = false;
-      }
-  };
+  if (
+    textOverElement != null &&
+    buttonCardElement instanceof HTMLButtonElement &&
+    buttonStopElement instanceof HTMLButtonElement &&
+    buttonGameOverElement instanceof HTMLButtonElement
+  ) {
+    textOverElement.textContent = "¡ Lo has clavado! ¡Enhorabuena!";
+    buttonCardElement.disabled = true;
+    buttonStopElement.disabled = true;
+    buttonGameOverElement.disabled = false;
+  }
+};
   
 export const lostGame = () => {
-      if (textOverElement != null && buttonGameOverElement && buttonStopElement && buttonCardElement) {
-          textOverElement.textContent = "Te has pasado";
-          buttonGameOverElement.disabled = false;
-          buttonStopElement.disabled = true;
-          buttonCardElement.disabled = true;
-      }
-  };
+  if (
+    textOverElement != null &&
+    buttonGameOverElement instanceof HTMLButtonElement &&
+    buttonStopElement instanceof HTMLButtonElement &&
+    buttonCardElement instanceof HTMLButtonElement
+  ) {
+    textOverElement.textContent = "Te has pasado";
+    buttonGameOverElement.disabled = false;
+    buttonStopElement.disabled = true;
+    buttonCardElement.disabled = true;
+  }
+};
   
 export const reviewGame = () => {
     if (numberOfGame.score === 7.5) {
@@ -88,4 +111,5 @@ export const reviewGame = () => {
   
     checkButton();
   };
+  
   
