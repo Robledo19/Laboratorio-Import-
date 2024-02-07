@@ -95,7 +95,6 @@ export const stopGameFuntion = (): void => {
 };
 
 export const clueFuntion = (): void => {
-  if (numberOfGame.clueUsed) return;
   let nextRandomNumber = getRandomNumber();
   let cardNumber = getCartNumber(nextRandomNumber);
   if (textOverElement !== null && textOverElement !== undefined && textOverElement instanceof HTMLSpanElement) {
@@ -103,7 +102,6 @@ export const clueFuntion = (): void => {
     textOverElement.innerHTML = `La siguiente hubiera sido la carta: <br>${cardName}`;
   }
 
-  numberOfGame.clueUsed = true; 
   if (buttonClueElement !== null && buttonClueElement !== undefined && buttonClueElement instanceof HTMLButtonElement) {
     buttonClueElement.disabled = true; 
   }
@@ -131,3 +129,4 @@ export const playAgain = (): void => {
   restartButton();
   checkButton();
 };
+
