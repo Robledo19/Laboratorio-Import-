@@ -9,57 +9,57 @@ import {
  } from './model';
 
 export const checkButton = () => {
-  if (buttonCardElement instanceof HTMLButtonElement && buttonCardElement.disabled) {
+  if (buttonCardElement instanceof HTMLButtonElement && buttonCardElement.disabled && buttonCardElement !== undefined && buttonCardElement !== null) {
     buttonCardElement.classList.add("button-disabled");
-  } else {
-    buttonCardElement?.classList.remove("button-disabled");
+  } else if(buttonCardElement instanceof HTMLButtonElement && buttonCardElement !== undefined && buttonCardElement !== null) {
+    buttonCardElement.classList.remove("button-disabled");
   }
 
-  if (buttonStopElement instanceof HTMLButtonElement && buttonStopElement.disabled) {
+  if (buttonStopElement instanceof HTMLButtonElement && buttonStopElement.disabled && buttonStopElement !== undefined && buttonStopElement !== null) {
     buttonStopElement.classList.add("button-disabled");
-  } else {
-    buttonStopElement?.classList.remove("button-disabled");
+  } else if(buttonStopElement instanceof HTMLButtonElement && buttonStopElement !== undefined && buttonStopElement !== null){
+    buttonStopElement.classList.remove("button-disabled");
   }
 
-  if (buttonClueElement instanceof HTMLButtonElement && buttonClueElement.disabled) {
+  if (buttonClueElement instanceof HTMLButtonElement && buttonClueElement.disabled && buttonClueElement !== undefined && buttonClueElement !== null) {
     buttonClueElement.classList.add("button-disabled");
-  } else {
-    buttonClueElement?.classList.remove("button-disabled");
+  } else if(buttonClueElement instanceof HTMLButtonElement && buttonClueElement !== undefined && buttonClueElement !== null){
+    buttonClueElement.classList.remove("button-disabled");
   }
 
-  if (buttonGameOverElement instanceof HTMLButtonElement && buttonGameOverElement.disabled) {
+  if (buttonGameOverElement instanceof HTMLButtonElement && buttonGameOverElement.disabled && buttonCardElement !== undefined && buttonCardElement !== null) {
     buttonGameOverElement.classList.add("button-disabled");
-  } else {
-    buttonGameOverElement?.classList.remove("button-disabled");
+  } else if(buttonGameOverElement instanceof HTMLButtonElement && buttonCardElement !== undefined && buttonCardElement !== null){
+    buttonGameOverElement.classList.remove("button-disabled");
   }
 };
 
 export const activeButtonStop = () => {
-  if (buttonStopElement instanceof HTMLButtonElement) {
+  if (buttonStopElement instanceof HTMLButtonElement && buttonStopElement !== undefined && buttonStopElement !== null) {
     buttonStopElement.disabled = false;
   }
 };
 
 export const getCardPoints = (card: number) => {
-    return card > 7 ? 0.5 : card;
-  };
+  return card > 7 ? 0.5 : card;
+};
   
 export const sumPoints = (points: number) => {
-    return numberOfGame.score + points;
-  };
+  return numberOfGame.score + points;
+};;
   
 export const setScore = (newScore: number) => {
-      numberOfGame.score = newScore;
-  };
+  numberOfGame.score = newScore;
+};
   
 export const winGame = () => {
   if (
-    textOverElement != null &&
-    buttonCardElement instanceof HTMLButtonElement &&
-    buttonStopElement instanceof HTMLButtonElement &&
-    buttonGameOverElement instanceof HTMLButtonElement
+    textOverElement !== null && textOverElement !== undefined && textOverElement instanceof HTMLSpanElement &&
+    buttonCardElement !== null && buttonCardElement !== undefined && buttonCardElement instanceof HTMLButtonElement &&
+    buttonStopElement !== null && buttonStopElement !== undefined && buttonStopElement instanceof HTMLButtonElement &&
+    buttonGameOverElement !== null && buttonGameOverElement !== undefined && buttonGameOverElement instanceof HTMLButtonElement
   ) {
-    textOverElement.textContent = "¡ Lo has clavado! ¡Enhorabuena!";
+    textOverElement.textContent = "¡Lo has clavado! ¡Enhorabuena!";
     buttonCardElement.disabled = true;
     buttonStopElement.disabled = true;
     buttonGameOverElement.disabled = false;
@@ -68,10 +68,10 @@ export const winGame = () => {
   
 export const lostGame = () => {
   if (
-    textOverElement != null &&
-    buttonGameOverElement instanceof HTMLButtonElement &&
-    buttonStopElement instanceof HTMLButtonElement &&
-    buttonCardElement instanceof HTMLButtonElement
+    textOverElement !== null && textOverElement !== undefined && textOverElement instanceof HTMLSpanElement &&
+    buttonGameOverElement !== null && buttonGameOverElement !== undefined && buttonGameOverElement instanceof HTMLButtonElement &&
+    buttonStopElement !== null && buttonStopElement !== undefined && buttonStopElement instanceof HTMLButtonElement &&
+    buttonCardElement !== null && buttonCardElement !== undefined && buttonCardElement instanceof HTMLButtonElement
   ) {
     textOverElement.textContent = "Te has pasado";
     buttonGameOverElement.disabled = false;
@@ -97,19 +97,31 @@ export const reviewGame = () => {
   export const getCartNumber = (randomNumber: number) => {
     return randomNumber > 7 ? randomNumber + 2 : randomNumber;
   };
+
+export const printScore = (score: number) => {
+  if (textScoreElement !== null && textScoreElement !== undefined && textScoreElement instanceof HTMLSpanElement) {
+    textScoreElement.textContent = score.toString();
+  }
+};
   
   
   export const checkScore = (): void => {
-    if (textScoreElement !== null) {
+    if (textScoreElement !== null && textScoreElement !== undefined && textScoreElement instanceof HTMLSpanElement) {
       if (numberOfGame.randomNumber <= 7) {
-          numberOfGame.score += numberOfGame.randomNumber;
+        const points = getCardPoints(numberOfGame.randomNumber);
+        numberOfGame.score += points;
       } else {
-          numberOfGame.score += 0.5;
+        numberOfGame.score += 0.5;
       }
       textScoreElement.textContent = numberOfGame.score.toString();
     }
-  
     checkButton();
   };
   
-  
+
+  export const resertClueFuntion = () =>{
+    numberOfGame.clueUsed = false
+    if (buttonClueElement !== null && buttonClueElement !== undefined && buttonClueElement instanceof HTMLButtonElement) {
+      buttonClueElement.disabled = false; 
+    }
+  }
