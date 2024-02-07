@@ -9,7 +9,8 @@ export const cardElement = document.getElementById('card');
 
 export const numberOfGame = {
   score: 0,
-  randomNumber: 0
+  randomNumber: 0,
+  clueUsed: false
 }
 
 export const cardUrls: { [key: number]: string } = {
