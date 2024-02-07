@@ -107,20 +107,13 @@ export const printScore = (score: number) => {
   
   export const checkScore = (): void => {
     if (textScoreElement !== null && textScoreElement !== undefined && textScoreElement instanceof HTMLSpanElement) {
-      if (numberOfGame.randomNumber <= 7) {
-        const points = getCardPoints(numberOfGame.randomNumber);
-        numberOfGame.score += points;
-      } else {
-        numberOfGame.score += 0.5;
-      }
-      textScoreElement.textContent = numberOfGame.score.toString();
+      textScoreElement.textContent = '0';
     }
     checkButton();
   };
   
 
   export const resertClueFuntion = () =>{
-    numberOfGame.clueUsed = false
     if (buttonClueElement !== null && buttonClueElement !== undefined && buttonClueElement instanceof HTMLButtonElement) {
       buttonClueElement.disabled = false; 
     }
