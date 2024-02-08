@@ -5,15 +5,12 @@ import {
     buttonClueElement, 
  } from './model';
 
- import{
-    checkScore,
- } from './motor'
-
 import{
     stopGameFuntion,
     clueFuntion,
     newCard,
-    playAgain
+    playAgain,
+    checkScore
 } from './ui'
 
 
